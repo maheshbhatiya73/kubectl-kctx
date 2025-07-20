@@ -1,51 +1,84 @@
 # kubectl-kctx
 
-A minimal `kubectl` plugin written in Go to reload and inspect your local kubeconfig contexts.
+[![Go version](https://img.shields.io/github/go-mod/go-version/maheshbhatiya73/kubectl-kctx)](https://golang.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A minimal `kubectl` plugin written in Go to reload and inspect your local kubeconfig contexts. This tool is particularly useful for local development environments like `kind` where you might frequently update your kubeconfig.
 
 ## Features
 
-- Reloads the active kubeconfig
-- Lists available Kubernetes contexts
-- Designed for local setups (e.g., kind, minikube)
+- **Reload**: Fetches and displays the latest contexts from your kubeconfig file.
+- **List Contexts**: Clearly lists all available Kubernetes contexts.
+- **Validation**: Confirms that the kubeconfig is available and loaded correctly.
+- **Lightweight**: Simple and fast, with no external dependencies outside of the standard Go libraries and `spf13/cobra`.
 
 ## Installation
 
-### Build from source
+### Prerequisites
 
-```bash
-git clone git@github.com:maheshbhatiya73/kubectl-kctx.git
-cd kubectl-kctx
-go build -o kubectl-kctx
-chmod +x kubectl-kctx
-sudo mv kubectl-kctx /usr/local/bin/
-```
+- [Go](https://golang.org/doc/install) installed on your machine.
+- `kubectl` installed and configured.
+
+### Build from Source
+
+1.  **Clone the repository:**
+    ```
+    git clone https://github.com/maheshbhatiya73/kubectl-kctx.git
+    ```
+
+2.  **Navigate to the project directory:**
+    ```
+    cd kubectl-kctx
+    ```
+
+3.  **Build the binary:**
+    ```
+    go build -o kubectl-kctx
+    ```
+
+4.  **Make the binary executable:**
+    ```
+    chmod +x kubectl-kctx
+    ```
+
+5.  **Move the binary to your PATH:**
+    ```
+    sudo mv kubectl-kctx /usr/local/bin/
+    ```
 
 ## Usage
 
-```bash 
+To use the plugin, run the following command:
+
+```
 kubectl kctx reload
 ```
 
-Example output:
+### Example Output
+```
 Reloading kubeconfig from ~/.kube/config...
 CURRENT   NAME                CLUSTER             AUTHINFO            NAMESPACE
 *         kind-test-cluster   kind-test-cluster   kind-test-cluster   
 Kubeconfig is available and loaded.
-
+```
 
 ## Commands
 
-```bash 
-kubectl kctx reload	
-```
-Reloads and validates kubeconfig
+| Command | Description                               |
+|---------|-------------------------------------------|
+| `reload`  | Reloads and validates the kubeconfig file. |
 
 ## Development
 
-This plugin is written in Go using spf13/cobra. To build:
-```bash 
+This plugin is built with Go and the [spf13/cobra](https://github.com/spf13/cobra) library.
+
+To build the plugin for development, run:
+```
 go build -o kubectl-kctx
 ```
 
-License
-Apache License 2.0. © 2025 Mahesh Bhatiya
+## License
+
+This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+
+© 2025 Mahesh Bhatiya
